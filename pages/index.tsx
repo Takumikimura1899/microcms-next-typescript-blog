@@ -1,7 +1,15 @@
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { client } from '../libs/client';
 
-export default function Home({ blog }) {
+type Props = {
+  blog: {
+    id: string;
+    title: string;
+  }[];
+};
+
+export default function Home({ blog }: Props) {
   return (
     <div>
       <ul>
@@ -17,8 +25,8 @@ export default function Home({ blog }) {
   );
 }
 
-export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: 'blog' });
+export const getStaticProps: GetStaticProps = async () => {
+  const data: { contents: string } = await client.get({ endpoint: 'blog' });
 
   return {
     props: {
