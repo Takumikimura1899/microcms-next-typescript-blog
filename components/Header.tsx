@@ -2,13 +2,16 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="bg-teal-300 h-10 w-full">
+    <header className="bg-teal-300 h-10  max-w-xl px-4 py-2 mx-auto ">
       <nav>
         <Link href="/">
-          <a className="text-white pr-10">My Blog</a>
+          <a className="text-gray-300 pr-10">My Blog</a>
         </Link>
         <Link href="/about">
-          <a className="text-white">about</a>
+          <a className="text-gray-300 pr-10">about</a>
+        </Link>
+        <Link href="https://zenn.dev/kimura141899">
+          <a className="text-gray-300 ">Zenn:MyPage</a>
         </Link>
       </nav>
     </header>
