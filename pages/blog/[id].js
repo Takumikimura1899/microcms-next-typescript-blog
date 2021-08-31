@@ -1,16 +1,29 @@
+import Layout from '../../components/Layout';
 import { client } from '../../libs/client';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default function BlogId({ blog }) {
+  const timestamp = dayjs
+    .utc(blog.publishedAt)
+    .tz('Asia/Tokyo')
+    .format('YYYY-MM-DD');
   return (
-    <main>
-      <h1>{blog.title}</h1>
-      <p>{blog.publishedAt}</p>
-      <p>
-        <span>カテゴリー: </span>
-        {blog.category && `${blog.category.name}`}
-      </p>
-      <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} />
-    </main>
+    <Layout>
+      <main>
+        <h1>{blog.title}</h1>
+        <p>
+          <span>カテゴリー: </span>
+          {blog.category && `${blog.category.name}`}
+        </p>
+        <p className="pb-8">投稿日時:{timestamp}</p>
+        <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} />
+      </main>
+    </Layout>
   );
 }
 
