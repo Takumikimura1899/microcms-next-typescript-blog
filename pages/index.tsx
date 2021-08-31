@@ -21,11 +21,13 @@ export default function Home({ blog }: Props) {
       </Head>
       <section className="text-xl pb-4">
         <h2>Profile</h2>
-        <p>2021年4月よりプログラミング学習を開始。</p>
+        <p className="break-words">2021年4月よりプログラミング学習を開始。</p>
       </section>
       <section className="text-xl pb-8">
         <h2>MySkill</h2>
-        <p>HTML/CSS/JavaScript/TypeScript/React/Next.js/PHP/Git</p>
+        <p className="break-words">
+          HTML/ CSS/ JavaScript/ TypeScript/ React/ Next.js/ PHP/ Git
+        </p>
       </section>
       <section className="text-xl">
         <h2>Blog</h2>

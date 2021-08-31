@@ -19,7 +19,7 @@ export default function Layout({
   return (
     <>
       <Header />
-      <div className="max-w-xl px-4 mt-12 mx-auto mb-24">
+      <div className="bg-gray-200 max-w-xl px-4 py-4 mx-auto ">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta
@@ -35,7 +35,7 @@ export default function Layout({
           <meta name="og:title" content={siteTitle} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        <header className="flex flex-col items-center">
+        <header className="flex flex-col items-center mb-8">
           {home ? (
             <>
               <Image

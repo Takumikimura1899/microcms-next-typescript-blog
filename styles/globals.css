@@ -36,10 +36,14 @@
   }
 
   h2 {
-    @apply text-2xl;
+    @apply text-2xl mb-2;
   }
 
   ul {
-    @apply list-disc pl-10 text-lg my-2;
+    @apply list-disc pl-10 text-lg my-4;
+  }
+
+  li {
+    @apply pb-4;
   }
 }
