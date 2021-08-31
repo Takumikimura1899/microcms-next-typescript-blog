@@ -40,7 +40,7 @@
   }
 
   ul {
-    @apply list-disc pl-10 text-lg my-4;
+    @apply list-disc pl-4 text-lg my-4;
   }
 
   li {
