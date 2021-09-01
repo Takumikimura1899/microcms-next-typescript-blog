@@ -2,15 +2,22 @@ import Layout from '../../components/Layout';
 import { client } from '../../libs/client';
 import Date from '../../components/date';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import cheerio from 'cheerio';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/night-owl.css';
+import React from 'react';
 
 type Props = {
-  title: string;
-  category: { name: string };
-  publishedAt: string;
-  body: string;
+  blog: {
+    title: string;
+    category: { name: string };
+    publishedAt: string;
+    body: string;
+  };
+  highlightedBody: string;
 };
 
-export default function BlogId({ blog }: { blog: Props }) {
+export default function BlogId({ blog, highlightedBody }: Props) {
   return (
     <Layout>
       <main>
@@ -29,7 +36,7 @@ export default function BlogId({ blog }: { blog: Props }) {
             <Date dateString={blog.publishedAt} />
           </div>
         </section>
-        <div dangerouslySetInnerHTML={{ __html: `${blog.body}` }} />
+        <div dangerouslySetInnerHTML={{ __html: highlightedBody }} />
       </main>
     </Layout>
   );
@@ -46,13 +53,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 // データをテンプレートにウケ渡す部分の処理を記述する
-export const getStaticProps: GetStaticProps = async (context) => {
-  const id: any = context.params!.id;
-  const data = await client.get({ endpoint: 'blog', contentId: id });
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const id = context.params.id;
+  const data: any = await client.get({ endpoint: 'blog', contentId: id });
+
+  const $ = cheerio.load(data.body);
+
+  $('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass('hljs');
+  });
 
   return {
     props: {
       blog: data,
+      highlightedBody: $.html(),
     },
   };
 };

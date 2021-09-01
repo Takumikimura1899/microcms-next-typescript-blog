@@ -46,4 +46,8 @@
   li {
     @apply pb-4;
   }
+
+  pre {
+    @apply bg-black py-2 overflow-auto;
+  }
 }
