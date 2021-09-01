@@ -33,7 +33,6 @@ export default function Home({ blog }: Props) {
         <h2>Blog</h2>
       </section>
       <section className="text-xl pt-1">
-        <h2 className="my-4"></h2>
         <ul className="list-none p-0 m-0">
           {blog.map((blog) => (
             <li key={blog.id}>
