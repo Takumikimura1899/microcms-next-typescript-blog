@@ -29,20 +29,22 @@ export default function Home({ blog }: Props) {
           HTML/ CSS/ JavaScript/ TypeScript/ React/ Next.js/ PHP/ Git
         </p>
       </section>
-      <section className="text-xl">
-        <h2>Blog</h2>
+      <section className="text-xl flex flex-col items-center">
+        <h2>-Blog-</h2>
       </section>
       <section className="text-xl pt-1">
-        <ul className="list-none p-0 m-0">
+        <ul className="list-none p-0 m-0 flex flex-col items-center">
           {blog.map((blog) => (
-            <li key={blog.id}>
+            <li
+              className=" w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl"
+              key={blog.id}
+            >
               <Link href={`/blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
               <small className="text-gray-400">
                 <Date dateString={blog.publishedAt} />
               </small>
-              <hr />
             </li>
           ))}
         </ul>

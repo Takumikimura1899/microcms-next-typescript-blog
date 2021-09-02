@@ -43,9 +43,9 @@
     @apply list-disc pl-6 text-lg my-4;
   }
 
-  li {
-    @apply pb-4;
-  }
+  /* li {
+    @apply pb-2;
+  } */
 
   pre {
     @apply bg-black py-2 overflow-auto;
