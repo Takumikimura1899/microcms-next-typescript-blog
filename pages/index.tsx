@@ -6,15 +6,18 @@ import Layout, { siteTitle } from '../components/Layout';
 import { client } from '../libs/client';
 import Pagination from '../components/Pagination';
 
+const PER_PAGE = 5;
+
 type Props = {
   blog: {
     id: string;
     title: string;
     publishedAt: string;
   }[];
+  totalCount: number;
 };
 
-export default function Home({ blog }: Props, totalCount: number) {
+export default function Home({ blog, totalCount }: Props) {
   return (
     <Layout home>
       <Head>
@@ -40,7 +43,7 @@ export default function Home({ blog }: Props, totalCount: number) {
               className=' w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl'
               key={blog.id}
             >
-              <Link href={`/blog/${blog.id}`}>
+              <Link href={`/blog/page/blogs/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
               <small className='text-gray-400'>
@@ -49,28 +52,44 @@ export default function Home({ blog }: Props, totalCount: number) {
             </li>
           ))}
         </ul>
-        <Pagination totalCount={totalCount} />
+        {/* <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} /> */}
+        <Link href={`/blog/page/1`}>
+          <a>もっと見る</a>
+        </Link>
       </section>
     </Layout>
   );
 }
 
+// type Context = {
+//   text:string
+// }
 // export const getStaticProps: GetStaticProps = async () => {
-//   const data: { contents: Props } = await client.get({ endpoint: 'blog' });
+//   const data: { contents: Props } = await client.get({
+//     endpoint: 'blog',
+//     queries: {
+//       offset: 0,
+//       limit: 5,
+//     },
+//   });
+//   const  totalCount  = await client.getList<Context>({
+//     totalCount:totalCount,
+//   });
 
 //   return {
 //     props: {
 //       blog: data.contents,
+//       totalCount: totalCount.length,
 //     },
 //   };
 // };
 
 export const getStaticProps: GetStaticProps = async () => {
   const key: any = {
-    headers: { 'X-MICROCMS-API=KEY': process.env.API_KEY },
+    headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
   };
   const data = await fetch(
-    'https://your-service.microcms.io/api/v1/blog?offset=0&limit=5',
+    'https://taku1219.microcms.io/api/v1/blog?offset=0&limit=5',
     key
   )
     .then((res) => res.json())

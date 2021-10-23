@@ -1,11 +1,12 @@
-import Layout from '../../components/Layout';
-import { client } from '../../libs/client';
-import Date from '../../components/date';
+import Layout from '../../../../components/Layout';
+import { client } from '../../../../libs/client';
+import Date from '../../../../components/date';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/night-owl.css';
 import React from 'react';
+import Pagination from '../../../../components/Pagination';
 
 type Props = {
   blog: {
@@ -15,23 +16,24 @@ type Props = {
     body: string;
   };
   highlightedBody: string;
+  totalCount: number;
 };
 
-export default function BlogId({ blog, highlightedBody }: Props) {
+export default function BlogId({ blog, highlightedBody, totalCount }: Props) {
   return (
     <Layout>
       <main>
         <h1>{blog.title}</h1>
-        <section className="pb-8">
-          <div className="mb-2">
+        <section className='pb-8'>
+          <div className='mb-2'>
             <span>
-              カテゴリー<span className="mx-1">:</span>
+              カテゴリー<span className='mx-1'>:</span>
             </span>
             {blog.category && `${blog.category.name}`}
           </div>
-          <div className="flex">
+          <div className='flex'>
             <span>
-              投稿日時<span className="mx-1">:</span>
+              投稿日時<span className='mx-1'>:</span>
             </span>
             <Date dateString={blog.publishedAt} />
           </div>
@@ -48,7 +50,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     endpoint: 'blog',
   });
 
-  const paths = data.contents.map((content) => `/blog/${content.id}`);
+  const paths = data.contents.map(
+    (content) => `/blog/page/blogs/${content.id}`
+  );
   return { paths, fallback: false };
 };
 
