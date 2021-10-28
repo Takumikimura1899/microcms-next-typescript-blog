@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import { Button, Container, Row, Col } from '@nextui-org/react';
 import HeaderContent from './atoms/HeaderContent';
+import ZennIcon from './molecules/ZennIcon';
 
 const Header = () => {
   return (
     <Container
-      className='bg-teal-300 text-center text-2xl mb-2 py-1'
+      className='bg-teal-300  text-2xl mb-2 py-1'
       display='flex'
       alignItems='center'
     >
       <Row>
-        <Col className=' '>
+        <Col className=''>
           <HeaderContent link='/'>My Blog</HeaderContent>
         </Col>
 
@@ -19,9 +20,7 @@ const Header = () => {
         </Col>
 
         <Col className=''>
-          <HeaderContent link='https://zenn.dev/kimura141899'>
-            Zenn:MyPage
-          </HeaderContent>
+          <ZennIcon />
         </Col>
       </Row>
     </Container>
