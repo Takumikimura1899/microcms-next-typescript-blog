@@ -46,9 +46,9 @@ export default function Home({ blog, totalCount }: Props) {
               <Link href={`/blog/page/blogs/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
-              <small className='text-gray-400'>
+              <p className='text-gray-400'>
                 <Date dateString={blog.publishedAt} />
-              </small>
+              </p>
             </li>
           ))}
         </ul>
