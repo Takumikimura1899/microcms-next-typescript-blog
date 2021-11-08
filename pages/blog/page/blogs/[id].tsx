@@ -7,11 +7,13 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/night-owl.css';
 import React from 'react';
 import Pagination from '../../../../components/Pagination';
+import { CategoryCard } from '../../../../components/molecules/CategoryCard';
 
 type Props = {
   blog: {
     title: string;
-    category: { name: string };
+    category?: { name: string };
+    category2?: { name: string };
     publishedAt: string;
     body: string;
   };
@@ -20,12 +22,20 @@ type Props = {
 };
 
 export default function BlogId({ blog, highlightedBody, totalCount }: Props) {
+  console.log(blog.category2);
+
   return (
     <Layout>
       <main>
         <h1>{blog.title}</h1>
         <section className='pb-8'>
           <div className='mb-2'>
+            {(blog.category || blog.category2) && (
+              <CategoryCard
+                category={blog.category!.name}
+                category2={blog.category2!.name}
+              />
+            )}
             <span>
               カテゴリー<span className='mx-1'>:</span>
             </span>
