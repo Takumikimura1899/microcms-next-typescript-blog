@@ -7,5 +7,5 @@ dayjs.extend(timezone);
 
 export default function Date({ dateString }: { dateString: string }) {
   const timestamp = dayjs.utc(dateString).tz('Asia/Tokyo').format('YYYY-MM-DD');
-  return <p>{timestamp}</p>;
+  return <span>{timestamp}</span>;
 }

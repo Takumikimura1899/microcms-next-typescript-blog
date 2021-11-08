@@ -32,9 +32,7 @@ export default function BlogId({ blog, highlightedBody, totalCount }: Props) {
             {blog.category && `${blog.category.name}`}
           </div>
           <div className='flex'>
-            <span>
-              投稿日時<span className='mx-1'>:</span>
-            </span>
+            投稿日時<span className='mx-1'>:</span>
             <Date dateString={blog.publishedAt} />
           </div>
         </section>
