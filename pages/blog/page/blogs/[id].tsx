@@ -12,18 +12,16 @@ import { CategoryCard } from '../../../../components/molecules/CategoryCard';
 type Props = {
   blog: {
     title: string;
-    category?: { name: string };
-    category2?: { name: string };
+    category: { name: string };
+    category2: { name: string };
     publishedAt: string;
     body: string;
   };
   highlightedBody: string;
-  totalCount: number;
+  categories: string[];
 };
 
-export default function BlogId({ blog, highlightedBody, totalCount }: Props) {
-  console.log(blog.category2);
-
+export default function BlogId({ blog, highlightedBody, categories }: Props) {
   return (
     <Layout>
       <main>
@@ -32,8 +30,9 @@ export default function BlogId({ blog, highlightedBody, totalCount }: Props) {
           <div className='mb-2'>
             {(blog.category || blog.category2) && (
               <CategoryCard
-                category={blog.category!.name}
-                category2={blog.category2!.name}
+                categories={categories}
+                category={blog.category.name}
+                category2={blog.category2.name}
               />
             )}
             <span>
@@ -68,6 +67,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const id = context.params.id;
   const data: any = await client.get({ endpoint: 'blog', contentId: id });
+  const categories = await client
+    .get({ endpoint: 'categories' })
+    .then((res: any) => res.contents.map((category: any) => category.name));
 
   const $ = cheerio.load(data.body);
 
@@ -81,6 +83,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     props: {
       blog: data,
       highlightedBody: $.html(),
+      categories,
     },
   };
 };
