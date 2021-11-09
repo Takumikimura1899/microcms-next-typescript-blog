@@ -6,11 +6,11 @@ export const CategoryCard = ({
   category2,
   categories,
 }: {
-  category: any;
+  category: string;
   category2: string;
   categories: string[];
 }) => {
-  const categoryIcon: any = { JavaScript: <JsIcon /> };
+  const categoryIcon: { [category: string]: {} } = { JavaScript: <JsIcon /> };
   console.log(categoryIcon);
 
   return (
