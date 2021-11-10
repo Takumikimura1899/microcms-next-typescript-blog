@@ -1,6 +1,7 @@
 import React from 'react';
 import { GithubIcon } from '../atoms/GithubIcon';
 import { GitIcon } from '../atoms/GitIcon';
+import { JournalIcon } from '../atoms/JournalIcon';
 import { JsIcon } from '../atoms/JsIcon';
 import { NextJsIcon } from '../atoms/NextJsIcon';
 import { TsIcon } from '../atoms/TsIcon';
@@ -20,6 +21,7 @@ export const CategoryCard = ({
     'Next.js': <NextJsIcon />,
     Git: <GitIcon />,
     Github: <GithubIcon />,
+    日記: <JournalIcon />,
   };
 
   return (
