@@ -1,6 +1,6 @@
 import { SiTypescript } from 'react-icons/si';
 
-export const JsIcon = () => {
+export const TsIcon = () => {
   return (
     <div>
       <SiTypescript color='blue' />
