@@ -1,5 +1,6 @@
 import React from 'react';
 import { JsIcon } from '../atoms/JsIcon';
+import { NextJsIcon } from '../atoms/NextJsIcon';
 import { TsIcon } from '../atoms/TsIcon';
 
 export const CategoryCard = ({
@@ -14,6 +15,7 @@ export const CategoryCard = ({
   const categoryIcon: { [category: string]: {} } = {
     JavaScript: <JsIcon />,
     TypeScript: <TsIcon />,
+    'Next.js': <NextJsIcon />,
   };
 
   return (
