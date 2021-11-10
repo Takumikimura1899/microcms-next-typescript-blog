@@ -11,7 +11,6 @@ export const CategoryCard = ({
   categories: string[];
 }) => {
   const categoryIcon: { [category: string]: {} } = { JavaScript: <JsIcon /> };
-  console.log(categoryIcon);
 
   return (
     <div className='flex items-center'>
