@@ -10,7 +10,7 @@ type Props = {
   blog: {
     id: number;
     title: string;
-    category: { name: string };
+    category?: { name: string };
     publishedAt: string;
     body: string;
   }[];

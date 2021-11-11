@@ -12,8 +12,8 @@ export const CategoryCard = ({
   category2,
   categories,
 }: {
-  category: string;
-  category2: string;
+  category?: string;
+  category2?: string;
   categories: string[];
 }) => {
   const categoryIcon: { [category: string]: {} } = {
@@ -29,7 +29,7 @@ export const CategoryCard = ({
   return (
     <div className='flex items-center'>
       カテゴリー<span className='mx-1'>:</span>
-      {categoryIcon[category]}
+      {categoryIcon[category!]}
     </div>
   );
 };

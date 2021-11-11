@@ -12,8 +12,8 @@ import { CategoryCard } from '../../../../components/molecules/CategoryCard';
 type Props = {
   blog: {
     title: string;
-    category: { name: string };
-    category2: { name: string };
+    category?: { name: string };
+    category2?: { name: string };
     publishedAt: string;
     body: string;
   };
@@ -22,17 +22,18 @@ type Props = {
 };
 
 export default function BlogId({ blog, highlightedBody, categories }: Props) {
+  const blogCategoryCheck: boolean = !!blog.category || !!blog.category2;
   return (
     <Layout>
       <main>
         <h1>{blog.title}</h1>
         <section className='pb-8'>
           <div className='mb-2'>
-            {(blog.category || blog.category2) && (
+            {blogCategoryCheck && (
               <CategoryCard
                 categories={categories}
-                category={blog.category.name}
-                category2={blog.category2.name}
+                category={blog.category?.name}
+                category2={blog.category2?.name}
               />
             )}
             <span>
