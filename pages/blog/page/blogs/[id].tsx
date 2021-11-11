@@ -22,20 +22,17 @@ type Props = {
 };
 
 export default function BlogId({ blog, highlightedBody, categories }: Props) {
-  const blogCategoryCheck: boolean = !!blog.category || !!blog.category2;
   return (
     <Layout>
       <main>
         <h1>{blog.title}</h1>
         <section className='pb-8'>
           <div className='mb-2'>
-            {blogCategoryCheck && (
-              <CategoryCard
-                categories={categories}
-                category={blog.category?.name}
-                category2={blog.category2?.name}
-              />
-            )}
+            <CategoryCard
+              categories={categories}
+              category={blog.category?.name}
+              category2={blog.category2?.name}
+            />
           </div>
           <PublishedAtCard dateString={blog.publishedAt} />
         </section>

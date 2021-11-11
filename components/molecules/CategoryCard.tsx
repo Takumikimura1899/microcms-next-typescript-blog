@@ -30,14 +30,18 @@ export const CategoryCard = ({
   return (
     <div className='flex items-center'>
       カテゴリー<span className='mx-1'>:</span>
-      <ContentCard>
-        <span className='mr-2'>{category}</span>
-        {categoryIcon[category!]}
-      </ContentCard>
-      <ContentCard>
-        <span className='mr-2'>{category2}</span>
-        {categoryIcon[category2!]}
-      </ContentCard>
+      {category && (
+        <ContentCard>
+          <span className='mr-2'>{category}</span>
+          {categoryIcon[category!]}
+        </ContentCard>
+      )}
+      {category2 && (
+        <ContentCard>
+          <span className='mr-2'>{category2}</span>
+          {categoryIcon[category2!]}
+        </ContentCard>
+      )}
     </div>
   );
 };
