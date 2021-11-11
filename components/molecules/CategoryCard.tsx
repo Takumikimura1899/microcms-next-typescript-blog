@@ -29,7 +29,8 @@ export const CategoryCard = ({
   return (
     <div className='flex items-center'>
       カテゴリー<span className='mx-1'>:</span>
-      {categoryIcon[category!]}
+      <div className='mr-2'>{categoryIcon[category!]}</div>
+      <div>{categoryIcon[category2!]}</div>
     </div>
   );
 };
