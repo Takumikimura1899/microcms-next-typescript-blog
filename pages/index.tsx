@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import Date from '../components/date';
+import { Date } from '../components/date';
 import Layout, { siteTitle } from '../components/Layout';
 import { client } from '../libs/client';
 import Pagination from '../components/Pagination';

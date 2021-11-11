@@ -6,6 +6,7 @@ import { JsIcon } from '../atoms/JsIcon';
 import { NextJsIcon } from '../atoms/NextJsIcon';
 import { TailwindCssIcon } from '../atoms/TailwindCssIcon';
 import { TsIcon } from '../atoms/TsIcon';
+import { ContentCard } from '../Layout/ContentCard';
 
 export const CategoryCard = ({
   category,
@@ -29,8 +30,14 @@ export const CategoryCard = ({
   return (
     <div className='flex items-center'>
       カテゴリー<span className='mx-1'>:</span>
-      <div className='mr-2'>{categoryIcon[category!]}</div>
-      <div>{categoryIcon[category2!]}</div>
+      <ContentCard>
+        <span className='mr-2'>{category}</span>
+        {categoryIcon[category!]}
+      </ContentCard>
+      <ContentCard>
+        <span className='mr-2'>{category2}</span>
+        {categoryIcon[category2!]}
+      </ContentCard>
     </div>
   );
 };

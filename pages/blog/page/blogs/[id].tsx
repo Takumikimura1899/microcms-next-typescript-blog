@@ -1,6 +1,5 @@
 import Layout from '../../../../components/Layout';
 import { client } from '../../../../libs/client';
-import Date from '../../../../components/date';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
@@ -8,6 +7,7 @@ import 'highlight.js/styles/night-owl.css';
 import React from 'react';
 import Pagination from '../../../../components/Pagination';
 import { CategoryCard } from '../../../../components/molecules/CategoryCard';
+import { PublishedAtCard } from '../../../../components/molecules/PublishedAtCard';
 
 type Props = {
   blog: {
@@ -36,15 +36,8 @@ export default function BlogId({ blog, highlightedBody, categories }: Props) {
                 category2={blog.category2?.name}
               />
             )}
-            <span>
-              カテゴリー<span className='mx-1'>:</span>
-            </span>
-            {blog.category && `${blog.category.name}`}
           </div>
-          <div className='flex'>
-            投稿日時<span className='mx-1'>:</span>
-            <Date dateString={blog.publishedAt} />
-          </div>
+          <PublishedAtCard dateString={blog.publishedAt} />
         </section>
         <div dangerouslySetInnerHTML={{ __html: highlightedBody }} />
       </main>

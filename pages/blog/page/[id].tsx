@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import Layout from '../../../components/Layout';
-import Date from '../../../components/date';
+import { Date } from '../../../components/date';
 import Pagination from '../../../components/Pagination';
 
 const PER_PAGE = 10;
