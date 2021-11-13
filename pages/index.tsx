@@ -43,7 +43,7 @@ export default function Home({ blog, totalCount }: Props) {
               className=' w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl'
               key={blog.id}
             >
-              <Link href={`/blog/page/blogs/${blog.id}`}>
+              <Link href={`blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
               <p className='text-gray-400'>
@@ -52,7 +52,7 @@ export default function Home({ blog, totalCount }: Props) {
             </li>
           ))}
         </ul>
-        {/* <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} /> */}
+        <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
         <Link href={`/blog/page/1`}>
           <a>もっと見る</a>
         </Link>

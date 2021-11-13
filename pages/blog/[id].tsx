@@ -1,13 +1,13 @@
-import Layout from '../../../../components/Layout';
-import { client } from '../../../../libs/client';
+import Layout from '../../components/Layout';
+import { client } from '../../libs/client';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/night-owl.css';
 import React from 'react';
-import Pagination from '../../../../components/Pagination';
-import { CategoryCard } from '../../../../components/molecules/CategoryCard';
-import { PublishedAtCard } from '../../../../components/molecules/PublishedAtCard';
+import Pagination from '../../components/Pagination';
+import { CategoryCard } from '../../components/molecules/CategoryCard';
+import { PublishedAtCard } from '../../components/molecules/PublishedAtCard';
 
 type Props = {
   blog: {
@@ -43,21 +43,37 @@ export default function BlogId({ blog, highlightedBody, categories }: Props) {
 }
 
 // 静的生成の為のパスを指定する
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
+  const key: any = {
+    headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
+  };
+
+  const count = await fetch(`https://taku1219.microcms.io/api/v1/blog`, key)
+    .then((res) => res.json())
+    .catch(() => null);
+
   const data: { contents: { id: string }[] } = await client.get({
     endpoint: 'blog',
+    queries: { limit: count.totalCount },
   });
 
-  const paths = data.contents.map(
-    (content) => `/blog/page/blogs/${content.id}`
-  );
-  return { paths, fallback: true };
+  // const key: any = {
+  //   headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
+  // };
+
+  // const res = await fetch('https://taku1219.microcms.io/api/v1/blog', key);
+
+  // const repos = await res.json();
+
+  const paths = data.contents.map((content: any) => `/blog/${content.id}`);
+  return { paths, fallback: false };
 };
 
 // データをテンプレートにウケ渡す部分の処理を記述する
-export const getStaticProps: GetStaticProps = async (context: any) => {
+export const getStaticProps = async (context: any) => {
   const id = context.params.id;
   const data: any = await client.get({ endpoint: 'blog', contentId: id });
+
   const categories = await client
     .get({ endpoint: 'categories' })
     .then((res: any) => res.contents.map((category: any) => category.name));

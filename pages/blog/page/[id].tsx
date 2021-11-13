@@ -4,11 +4,11 @@ import Layout from '../../../components/Layout';
 import { Date } from '../../../components/date';
 import Pagination from '../../../components/Pagination';
 
-const PER_PAGE = 10;
+const PER_PAGE = 5;
 
 type Props = {
   blog: {
-    id: number;
+    id: string;
     title: string;
     category?: { name: string };
     publishedAt: string;
@@ -28,7 +28,7 @@ export default function BlogPageId({ blog, totalCount }: Props) {
               className='w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl'
               key={blog.id}
             >
-              <Link href={`blogs/${blog.id}`}>
+              <Link href={`/blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
               <small className='text-gray-400'>
@@ -65,16 +65,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context: any) => {
-  const id = context.params!.id;
+  const id = context.params.id;
 
   const key: any = {
     headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
   };
 
   const data = await fetch(
-    `https://taku1219.microcms.io/api/v1/blog?offset=${(id - 1) * 10}&limit=10`,
+    `https://taku1219.microcms.io/api/v1/blog?offset=${(id - 1) * 5}&limit=5`,
     key
   )
+    .then((res) => res.json())
+    .catch(() => null);
+
+  const count = await fetch(`https://taku1219.microcms.io/api/v1/blog`, key)
     .then((res) => res.json())
     .catch(() => null);
 
