@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Layout from '../../../components/Layout';
 import { Date } from '../../../components/date';
 import Pagination from '../../../components/Pagination';
+import { key } from '../../../libs/client';
+import { ParsedUrlQuery } from 'querystring';
 
 const PER_PAGE = 5;
 
@@ -17,6 +19,10 @@ type Props = {
   highlightedBody: string;
   totalCount: number;
 };
+
+interface Params extends ParsedUrlQuery {
+  id: string;
+}
 
 export default function BlogPageId({ blog, totalCount }: Props) {
   return (
@@ -44,10 +50,6 @@ export default function BlogPageId({ blog, totalCount }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const key: any = {
-    headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
-  };
-
   const res = await fetch('https://taku1219.microcms.io/api/v1/blog', key);
 
   const repos = await res.json();
@@ -66,10 +68,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
-
-  const key: any = {
-    headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
-  };
 
   const data = await fetch(
     `https://taku1219.microcms.io/api/v1/blog?offset=${(id - 1) * 5}&limit=5`,

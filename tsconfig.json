@@ -19,7 +19,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/index.tsx",
-    "libs/client.js"
+    "libs/client.ts"
   ],
   "exclude": ["node_modules"]
 }

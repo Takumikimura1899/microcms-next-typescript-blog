@@ -1,5 +1,5 @@
 import Layout from '../../components/Layout';
-import { client } from '../../libs/client';
+import { client, key } from '../../libs/client';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
@@ -55,14 +55,11 @@ export default function BlogId({ blog, highlightedBody, categories }: Props) {
 
 // 静的生成の為のパスを指定する
 export const getStaticPaths = async () => {
-  const key: { headers: { 'X-MICROCMS-API-KEY'?: string } } = {
-    headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
-  };
   const count = await fetch(`https://taku1219.microcms.io/api/v1/blog`, key)
     .then((res) => res.json())
     .catch(() => null);
 
-  const data: { contents: { id: string }[] } = await client.get({
+  const data = await client.get<{ contents: { id: string }[] }>({
     endpoint: 'blog',
     queries: { limit: count.totalCount },
   });
@@ -85,7 +82,7 @@ export const getStaticProps = async (
 ) => {
   const id = context.params!.id;
 
-  const data: Blog = await client.get({
+  const data = await client.get<Blog>({
     endpoint: 'blog',
     contentId: id,
   });
