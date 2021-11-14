@@ -1,6 +1,6 @@
 import Layout from '../../components/Layout';
 import { client } from '../../libs/client';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/night-owl.css';
@@ -8,17 +8,28 @@ import React from 'react';
 import Pagination from '../../components/Pagination';
 import { CategoryCard } from '../../components/molecules/CategoryCard';
 import { PublishedAtCard } from '../../components/molecules/PublishedAtCard';
+import { ParsedUrlQuery } from 'querystring';
 
-type Props = {
-  blog: {
-    title: string;
-    category?: { name: string };
-    category2?: { name: string };
-    publishedAt: string;
-    body: string;
-  };
+interface Props {
+  blog: Blog;
   highlightedBody: string;
   categories: string[];
+}
+
+interface Blog {
+  title: string;
+  category?: { name: string };
+  category2?: { name: string };
+  publishedAt: string;
+  body: string;
+}
+
+interface Params extends ParsedUrlQuery {
+  id: string;
+}
+
+type category = {
+  contents: { name: string }[];
 };
 
 export default function BlogId({ blog, highlightedBody, categories }: Props) {
@@ -44,10 +55,9 @@ export default function BlogId({ blog, highlightedBody, categories }: Props) {
 
 // 静的生成の為のパスを指定する
 export const getStaticPaths = async () => {
-  const key: any = {
+  const key: { headers: { 'X-MICROCMS-API-KEY'?: string } } = {
     headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY },
   };
-
   const count = await fetch(`https://taku1219.microcms.io/api/v1/blog`, key)
     .then((res) => res.json())
     .catch(() => null);
@@ -65,18 +75,24 @@ export const getStaticPaths = async () => {
 
   // const repos = await res.json();
 
-  const paths = data.contents.map((content: any) => `/blog/${content.id}`);
+  const paths = data.contents.map((content) => `/blog/${content.id}`);
   return { paths, fallback: false };
 };
 
 // データをテンプレートにウケ渡す部分の処理を記述する
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-  const data: any = await client.get({ endpoint: 'blog', contentId: id });
+export const getStaticProps = async (
+  context: GetStaticPropsContext<Params>
+) => {
+  const id = context.params!.id;
+
+  const data: Blog = await client.get({
+    endpoint: 'blog',
+    contentId: id,
+  });
 
   const categories = await client
-    .get({ endpoint: 'categories' })
-    .then((res: any) => res.contents.map((category: any) => category.name));
+    .get<category>({ endpoint: 'categories' })
+    .then((res) => res.contents.map((category) => category.name));
 
   const $ = cheerio.load(data.body);
 

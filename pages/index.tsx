@@ -34,7 +34,7 @@ export default function Home({ blog, totalCount }: Props) {
         </p>
       </section>
       <section className='text-xl flex flex-col items-center'>
-        <h2>-Blog-</h2>
+        <h2>-Blog- 最新の5記事</h2>
       </section>
       <section className='text-xl pt-1'>
         <ul className='list-none p-0 m-0 flex flex-col items-center'>
@@ -52,7 +52,7 @@ export default function Home({ blog, totalCount }: Props) {
             </li>
           ))}
         </ul>
-        <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
+        {/* <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} /> */}
         <Link href={`/blog/page/1`}>
           <a>もっと見る</a>
         </Link>
@@ -60,29 +60,6 @@ export default function Home({ blog, totalCount }: Props) {
     </Layout>
   );
 }
-
-// type Context = {
-//   text:string
-// }
-// export const getStaticProps: GetStaticProps = async () => {
-//   const data: { contents: Props } = await client.get({
-//     endpoint: 'blog',
-//     queries: {
-//       offset: 0,
-//       limit: 5,
-//     },
-//   });
-//   const  totalCount  = await client.getList<Context>({
-//     totalCount:totalCount,
-//   });
-
-//   return {
-//     props: {
-//       blog: data.contents,
-//       totalCount: totalCount.length,
-//     },
-//   };
-// };
 
 export const getStaticProps: GetStaticProps = async () => {
   const key: any = {
