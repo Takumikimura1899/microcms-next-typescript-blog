@@ -32,7 +32,7 @@
   }
 
   h1 {
-    @apply text-4xl font-semibold mb-10;
+    @apply text-3xl font-semibold mb-10;
   }
 
   h2 {

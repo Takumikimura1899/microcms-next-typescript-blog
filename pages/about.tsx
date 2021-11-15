@@ -2,6 +2,7 @@ import { Button, Container } from '@nextui-org/react';
 import Header from '../components/Header';
 import Layout from '../components/Layout';
 import { Zenn } from '../components/sample/reactIcons';
+import { Separator } from '../components/Separator';
 
 const About = () => {
   return (
@@ -9,10 +10,7 @@ const About = () => {
       <Header />
       {/* // <Layout> */}
       {/* //   <div className='text-center mt-10'>about</div> */}
-      <Container justify='center'>
-        <Button auto>click</Button>
-        <Zenn />
-      </Container>
+      <Separator />
       {/* // </Layout> */}
     </>
   );
