@@ -29,7 +29,7 @@ export default function Home({ blog, totalCount }: Props) {
         />
         <meta
           property='og:image'
-          content='/images/computer-gc41ead480_1280.jpg'
+          content='https://microcms-next-typescript-blog.vercel.app/public/images/computer-gc41ead480_1280.jpg'
         />
         <meta name='og:title' content={siteTitle} />
         <meta name='twitter:card' content='summary_large_image' />
