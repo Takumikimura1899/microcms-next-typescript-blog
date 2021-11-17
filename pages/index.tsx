@@ -22,6 +22,17 @@ export default function Home({ blog, totalCount }: Props) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='description'
+          content='Learn how to build a personal website using Next.js'
+        />
+        <meta
+          property='og:image'
+          content='/images/computer-gc41ead480_1280.jpg'
+        />
+        <meta name='og:title' content={siteTitle} />
+        <meta name='twitter:card' content='summary_large_image' />
       </Head>
       <section className='text-xl pb-4'>
         <h2>Profile</h2>

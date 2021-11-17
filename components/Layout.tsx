@@ -21,19 +21,6 @@ export default function Layout({
       <div className='bg-gray-200 max-w-xl mx-auto'>
         <Header />
         <div className='px-4'>
-          <Head>
-            <link rel='icon' href='/favicon.ico' />
-            <meta
-              name='description'
-              content='Learn how to build a personal website using Next.js'
-            />
-            <meta
-              property='og:image'
-              content='/public/images/computer-gc41ead480_1280.jpg'
-            />
-            <meta name='og:title' content={siteTitle} />
-            <meta name='twitter:card' content='summary_large_image' />
-          </Head>
           <div className='flex flex-col items-center mb-8'>
             {home ? (
               <>
