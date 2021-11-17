@@ -9,11 +9,13 @@ import Pagination from '../../components/Pagination';
 import { CategoryCard } from '../../components/molecules/CategoryCard';
 import { PublishedAtCard } from '../../components/molecules/PublishedAtCard';
 import { ParsedUrlQuery } from 'querystring';
+import Head from 'next/head';
 
 interface Props {
   blog: Blog;
   highlightedBody: string;
   categories: string[];
+  id: string;
 }
 
 interface Blog {
@@ -32,24 +34,50 @@ type category = {
   contents: { name: string }[];
 };
 
-export default function BlogId({ blog, highlightedBody, categories }: Props) {
+export default function BlogId({
+  blog,
+  highlightedBody,
+  categories,
+  id,
+}: Props) {
   return (
-    <Layout>
-      <main>
-        <h1>{blog.title}</h1>
-        <section className='pb-8'>
-          <div className='mb-2'>
-            <CategoryCard
-              categories={categories}
-              category={blog.category?.name}
-              category2={blog.category2?.name}
-            />
-          </div>
-          <PublishedAtCard dateString={blog.publishedAt} />
-        </section>
-        <div dangerouslySetInnerHTML={{ __html: highlightedBody }} />
-      </main>
-    </Layout>
+    <>
+      <Head>
+        <meta
+          property='og:url'
+          content={`https://microcms-next-typescript-blog.vercel.app/blog/${id}`}
+        />
+        <meta property='og:type' content='article' />
+        <meta property='og:title' content={`${blog.title}`} />
+        <meta property='og:site_name' content={`${blog.title}`} />
+        <meta
+          property='og:description'
+          content={`${blog.category?.name} ${blog.category2?.name}`}
+        />
+        <meta
+          property='og:image'
+          content='/public/images/computer-gc41ead480_1280.jpg'
+        />
+        <meta name='Twitte:card' content='Summary Card' />
+        <meta name='twitter:site' content='@taku_19921219' />
+      </Head>
+      <Layout>
+        <main>
+          <h1>{blog.title}</h1>
+          <section className='pb-8'>
+            <div className='mb-2'>
+              <CategoryCard
+                categories={categories}
+                category={blog.category?.name}
+                category2={blog.category2?.name}
+              />
+            </div>
+            <PublishedAtCard dateString={blog.publishedAt} />
+          </section>
+          <div dangerouslySetInnerHTML={{ __html: highlightedBody }} />
+        </main>
+      </Layout>
+    </>
   );
 }
 
@@ -101,9 +129,10 @@ export const getStaticProps = async (
 
   return {
     props: {
+      id,
+      categories,
       blog: data,
       highlightedBody: $.html(),
-      categories,
     },
   };
 };
