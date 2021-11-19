@@ -63,18 +63,17 @@ export default function BlogId({
       </Head>
       <Layout>
         <main>
-          <p>タイトル</p>
-          <h1 className='text-4xl'>{blog.title}</h1>
-          <section className='pb-8'>
-            <div className='mb-2'>
+          <div className='bg-gray-300 flex flex-col items-center rounded-3xl py-8 px-4 shadow-lg mb-10'>
+            <h1 className='text-4xl'>{blog.title}</h1>
+            <div className='flex'>
               <CategoryCard
                 categories={categories}
                 category={blog.category?.name}
                 category2={blog.category2?.name}
               />
+              <PublishedAtCard dateString={blog.publishedAt} />
             </div>
-            <PublishedAtCard dateString={blog.publishedAt} />
-          </section>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: highlightedBody }} />
         </main>
       </Layout>

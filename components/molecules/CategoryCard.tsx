@@ -29,7 +29,6 @@ export const CategoryCard = ({
 
   return (
     <div className='flex items-center'>
-      カテゴリー<span className='mx-1'>:</span>
       {category && (
         <ContentCard>
           <span className='mr-2'>{category}</span>
