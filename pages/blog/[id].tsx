@@ -63,7 +63,8 @@ export default function BlogId({
       </Head>
       <Layout>
         <main>
-          <h1>{blog.title}</h1>
+          <p>タイトル</p>
+          <h1 className='text-4xl'>{blog.title}</h1>
           <section className='pb-8'>
             <div className='mb-2'>
               <CategoryCard

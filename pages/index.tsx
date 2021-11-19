@@ -32,7 +32,8 @@ export default function Home({ blog, totalCount }: Props) {
           content='https://microcms-next-typescript-blog.vercel.app/images/computer-gc41ead480_1280.jpg'
         />
         <meta name='og:title' content={siteTitle} />
-        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='Twitte:card' content='Summary Card' />
+        <meta name='twitter:site' content='@taku_19921219' />
       </Head>
       <section className='text-xl pb-4'>
         <h2>Profile</h2>
