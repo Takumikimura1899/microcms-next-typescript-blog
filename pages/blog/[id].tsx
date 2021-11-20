@@ -63,9 +63,11 @@ export default function BlogId({
       </Head>
       <Layout>
         <main>
-          <div className='bg-gray-300 flex flex-col items-center rounded-3xl py-8 px-4 shadow-lg mb-10'>
-            <h1 className='text-4xl'>{blog.title}</h1>
-            <div className='flex'>
+          <div className='bg-gray-300 flex flex-col  items-center rounded-3xl py-8 px-4 shadow-lg mb-10'>
+            <h1 className='pl-2 break-words text-3xl sm:text-4xl'>
+              {blog.title}
+            </h1>
+            <div className='sm:flex'>
               <CategoryCard
                 categories={categories}
                 category={blog.category?.name}

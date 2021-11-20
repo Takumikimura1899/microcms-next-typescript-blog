@@ -151,13 +151,13 @@
     display: block;
   }
 
-  /* h1 {
+  h1 {
     @apply text-2xl font-semibold mb-10;
   }
 
   h2 {
     @apply text-xl mb-2;
-  } */
+  }
 
   ul {
     @apply list-disc pl-6 text-lg my-4;

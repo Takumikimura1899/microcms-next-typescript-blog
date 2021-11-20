@@ -28,7 +28,7 @@ export const CategoryCard = ({
   };
 
   return (
-    <div className='flex items-center'>
+    <div className='flex justify-center items-center'>
       {category && (
         <ContentCard>
           <span className='mr-2'>{category}</span>
