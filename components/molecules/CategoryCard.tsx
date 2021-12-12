@@ -4,6 +4,7 @@ import { GitIcon } from '../atoms/GitIcon';
 import { JournalIcon } from '../atoms/JournalIcon';
 import { JsIcon } from '../atoms/JsIcon';
 import { NextJsIcon } from '../atoms/NextJsIcon';
+import { ReactIcon } from '../atoms/ReactIcon';
 import { TailwindCssIcon } from '../atoms/TailwindCssIcon';
 import { TsIcon } from '../atoms/TsIcon';
 import { ContentCard } from '../Layout/ContentCard';
@@ -25,6 +26,7 @@ export const CategoryCard = ({
     Github: <GithubIcon />,
     日記: <JournalIcon />,
     TailwindCSS: <TailwindCssIcon />,
+    React: <ReactIcon />,
   };
 
   return (
