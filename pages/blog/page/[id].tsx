@@ -5,6 +5,9 @@ import { Date } from '../../../components/date';
 import Pagination from '../../../components/Pagination';
 import { key } from '../../../libs/client';
 import { ParsedUrlQuery } from 'querystring';
+import { useRouter } from 'next/router';
+import { CategoryCard } from '../../../components/molecules/CategoryCard';
+import BlogId from '../[id]';
 
 const PER_PAGE = 5;
 
@@ -13,6 +16,7 @@ type Props = {
     id: string;
     title: string;
     category?: { name: string };
+    category2?: { name: string };
     publishedAt: string;
     body: string;
   }[];
@@ -25,26 +29,38 @@ interface Params extends ParsedUrlQuery {
 }
 
 export default function BlogPageId({ blog, totalCount }: Props) {
+  const router = useRouter();
   return (
     <Layout>
-      <div>
-        <ul className='list-none p-0 m-0 flex flex-col items-center'>
-          {blog.map((blog) => (
-            <li
-              className='w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl'
-              key={blog.id}
-            >
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-              <small className='text-gray-400'>
-                <Date dateString={blog.publishedAt} />
-              </small>
-            </li>
-          ))}
-        </ul>
-        <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
+      <div className='flex flex-col items-center'>
+        {blog.map((blog) => (
+          <div
+            className='w-10/12 p-2 mx-1 mb-2 bg-green-200 rounded-xl cursor-pointer flex flex-col items-center text-center'
+            onClick={() => {
+              router.push(`/blog/${blog.id}`);
+            }}
+            key={blog.id}
+          >
+            {/* <Link href={`/blog/${blog.id}`}> */}
+            <a className='text-4xl mb-4 text-black'>{blog.title}</a>
+            <small className='text-gray-400 flex items-center mb-8'>
+              <Date dateString={blog.publishedAt} />
+              <CategoryCard
+                category={blog.category?.name}
+                category2={blog.category2?.name}
+              />
+            </small>
+
+            <div
+              className=' pt-4 line-clamp-3 !text-sm w-full px-4 bg-gradient-to-b from-green-200'
+              dangerouslySetInnerHTML={{ __html: blog.body }}
+            />
+
+            {/* </Link> */}
+          </div>
+        ))}
       </div>
+      <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
     </Layout>
   );
 }

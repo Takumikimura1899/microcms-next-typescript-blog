@@ -16,7 +16,7 @@ export const CategoryCard = ({
 }: {
   category?: string;
   category2?: string;
-  categories: string[];
+  categories?: string[];
 }) => {
   const categoryIcon: { [category: string]: {} } = {
     JavaScript: <JsIcon />,
