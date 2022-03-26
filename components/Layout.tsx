@@ -7,7 +7,7 @@ import { Footer } from './Footer';
 import Header from './Header';
 
 const name = 'Takumi Kimura';
-export const siteTitle = 'My Blog';
+export const siteTitle = 'たくtech';
 
 export default function Layout({
   children,

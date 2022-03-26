@@ -13,6 +13,9 @@ type Props = {
     id: string;
     title: string;
     publishedAt: string;
+    category?: { name: string };
+    category2?: { name: string };
+    body: string;
   }[];
   totalCount: number;
 };
@@ -61,6 +64,7 @@ export default function Home({ blog, totalCount }: Props) {
               <Link href={`blog/${blog.id}`}>
                 <a>{blog.title}</a>
               </Link>
+              <p></p>
               <p className='text-gray-400'>
                 <Date dateString={blog.publishedAt} />
               </p>
