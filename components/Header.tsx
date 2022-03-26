@@ -8,7 +8,7 @@ import takutech from '../public/images/takutech.png';
 const Header = () => {
   return (
     <>
-      <div className='flex items-center text-center justify-center  '>
+      <div className='flex items-center text-center justify-center bg-gray-800  '>
         <Image src={takutech} />
         <div className='text-center '>
           <span className='font font-serif text-white text-xl  '>
