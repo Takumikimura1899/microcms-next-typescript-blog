@@ -35,7 +35,7 @@ export default function BlogPageId({ blog, totalCount }: Props) {
       <div className='flex flex-col items-center'>
         {blog.map((blog) => (
           <div
-            className='w-10/12 p-2 mx-1 mb-10 pb-10 bg-gradient-to-b from-green-200 rounded-xl cursor-pointer flex flex-col items-center text-center '
+            className='w-10/12 p-2 mx-1 mb-10 pb-10 bg-gradient-to-b from-green-200 border-solid border border-green-300 rounded-xl  cursor-pointer flex flex-col items-center text-center  '
             onClick={() => {
               router.push(`/blog/${blog.id}`);
             }}
