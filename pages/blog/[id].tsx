@@ -56,7 +56,7 @@ export default function BlogId({
         />
         <meta
           property='og:image'
-          content='https://microcms-next-typescript-blog.vercel.app/images/computer-gc41ead480_1280.jpg'
+          content='https://microcms-next-typescript-blog.vercel.app/images/takutech.png'
         />
         <meta name='Twitte:card' content='Summary Card' />
         <meta name='twitter:site' content='@taku_19921219' />

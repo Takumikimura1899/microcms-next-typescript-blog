@@ -22,17 +22,20 @@ export default function Home({ blog, totalCount }: Props) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
-        <link rel='icon' href='/favicon.ico' />
+        <meta
+          property='og:url'
+          content={`https://microcms-next-typescript-blog.vercel.app`}
+        />
+        <meta name='og:title' content={siteTitle} />
         <meta
           name='description'
           content='Learn how to build a personal website using Next.js'
         />
         <meta
           property='og:image'
-          content='https://microcms-next-typescript-blog.vercel.app/images/computer-gc41ead480_1280.jpg'
+          content='https://microcms-next-typescript-blog.vercel.app/images/takutech.png'
         />
-        <meta name='og:title' content={siteTitle} />
-        <meta name='Twitte:card' content='Summary Card' />
+        <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@taku_19921219' />
       </Head>
       <section className='text-xl pb-4'>
